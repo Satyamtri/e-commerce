@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  resources :posts
+  root "home#index"
   devise_for :users ,controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  root "home#index"
+  resources :posts
+  resources :topics, only: [:index, :show] do
+    resources :sub_topics, only: [] do
+      member do
+        patch :update_status
+      end
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
