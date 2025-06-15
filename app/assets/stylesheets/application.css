@@ -229,3 +229,18 @@ th {
   .resource-link:hover {
     text-decoration: underline;
   }
+  .progress-card {
+  padding: 15px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  margin-bottom: 15px;
+}
+
+.progress {
+  height: 10px;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}

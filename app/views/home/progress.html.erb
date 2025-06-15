@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 class="my-4">Learning Progress Dashboard</h1>
+
+  <!-- Overall Progress Section -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2>Overall Completion</h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="progress-card">
+            <h3>Easy: <%= @overall_progress[:easy][:percentage] %>%</h3>
+            <div class="progress">
+              <div class="progress-bar bg-success" 
+                   style="width: <%= @overall_progress[:easy][:percentage] %>%"></div>
+            </div>
+            <small><%= @overall_progress[:easy][:completed] %>/<%= @overall_progress[:easy][:total] %> completed</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="progress-card">
+            <h3>Medium: <%= @overall_progress[:medium][:percentage] %>%</h3>
+            <div class="progress">
+              <div class="progress-bar bg-warning" 
+                   style="width: <%= @overall_progress[:medium][:percentage] %>%"></div>
+            </div>
+            <small><%= @overall_progress[:medium][:completed] %>/<%= @overall_progress[:medium][:total] %> completed</small>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="progress-card">
+            <h3>Hard: <%= @overall_progress[:hard][:percentage] %>%</h3>
+            <div class="progress">
+              <div class="progress-bar bg-danger" 
+                   style="width: <%= @overall_progress[:hard][:percentage] %>%"></div>
+            </div>
+            <small><%= @overall_progress[:hard][:completed] %>/<%= @overall_progress[:hard][:total] %> completed</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link back to topics -->
+  <div class="text-center mt-4">
+    <%= link_to "View All Topics", topics_path, class: "btn btn-primary" %>
+  </div>
+
+  <footer class="mt-4 text-center text-muted">
+    <p>© <%= Time.current.year %> Learning Tracker. All Rights Reserved.</p>
+  </footer>
+</div>

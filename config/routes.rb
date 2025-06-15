@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "home#index"
+  get '/progress', to: 'home#progress', as: 'progress'
   devise_for :users ,controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
