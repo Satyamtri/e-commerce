@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     progress = {}
 
     levels.each do |level|
-      subtopics = SubTopic.where(level: level)
+      subtopics = SubTopic.where(level: level.downcase)
       total = subtopics.count
       completed = subtopics.where(status: true).count
       percentage = total.positive? ? (completed.to_f / total * 100).round : 0
