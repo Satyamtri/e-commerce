@@ -9,6 +9,19 @@ class TopicsController < ApplicationController
     @sub_topics = @topic.sub_topics
   end
 
+  def new
+    @topic = Topic.new
+  end
+
+  def create
+    @topic = Topic.new(topic_params)
+    if @topic.save
+      format.json { render json: @topic, success: :true, message: "Topic created successfully" }
+    else
+      format.json { render json: @topic.errors, status: :unprocessable_entity }
+    end
+  end
+
   private
 
   def set_topic
