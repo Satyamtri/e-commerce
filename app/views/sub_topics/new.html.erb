@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-info">Create New SubTopic for <%= @topic.name %></h4>
+        </div>
+        
+        <div class="card-body">
+          <%= form_with(model: [@topic, @sub_topic], local: true) do |f| %>
+            <div class="form-group mb-3">
+              <%= f.label :name, "Sub-Topic Name", class: "form-label" %>
+              <%= f.text_field :name, class: "form-control", required: true %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :leetcode_link, "Leetcode link", class: "form-label" %>
+              <%= f.text_field :leetcode_link, class: "form-control" %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :youtube_link, "Youtube link", class: "form-label" %>
+              <%= f.text_field :youtube_link, class: "form-control" %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :article_link, "Article link", class: "form-label" %>
+              <%= f.text_field :article_link, class: "form-control" %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :level, "Level", class: "form-label" %>
+              <%= f.select :level, ['easy', 'medium', 'hard'], {}, class: "form-control" %>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <%= link_to 'Back to Topics', topics_path, class: 'btn btn-secondary' %>
+              <%= f.submit "Create SubTopic", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

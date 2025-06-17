@@ -2,7 +2,7 @@ class CreateSubTopics < ActiveRecord::Migration[7.0]
   def change
     create_table :sub_topics do |t|
       t.string :name
-      t.boolean :status
+      t.boolean :status, default: false
       t.string :leetcode_link
       t.string :youtube_link
       t.string :article_link

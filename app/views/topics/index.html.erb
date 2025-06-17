@@ -1,91 +1,85 @@
 <div class="container">
     <h4 class="login text-info">Topics</h4>
     <p class="topic-subheading">Explore These Exciting Topics</p>
-    <div class="text-center pb-2"><%= link_to "Add Topic", new_topic_path, class: "btn btn-primary btn-add-topic" %>
-    </div>
+    <div class="text-center pb-2"><%= link_to "Add Topic", new_topic_path, class: "btn btn-primary btn-add-topic" %></div>
     <div id="topics" class="topic-list">
-        <% @topics.each do |topic| %>
+      <% @topics.each do |topic| %>
         <div class="topic-item">
             <div class="topic-header">
-                <div>
-                    <span class="topic-name"><%= topic.name %></span>
-                    <span class="topic-status <%= topic.status ? 'done' : 'pending' %>">
-                        <%= topic.status ? '✓ Done' : '⌛ Pending' %>
-                    </span>
-                </div>
-                <button class="dropdown-toggle" data-topic-id="<%= topic.id %>">
-                    <%# <i class="arrow"></i> %>
-                </button>
+              <div>
+                <span class="topic-name"><%= topic.name %></span>
+                <span class="topic-status <%= topic.status ? 'done' : 'pending' %>"><%= topic.status ? '✓ Done' : '⌛ Pending' %></span>
+              </div>
+              <button class="dropdown-toggle" data-topic-id="<%= topic.id %>"></button>
             </div>
             
             <div class="subtopics-container" id="subtopics-<%= topic.id %>" style="display: none;">
-                <table class="subtopics-table">
-                    <thead>
-                        <tr>
-                            <th width="30%">Subtopic</th>
-                            <th>LeetCode</th>
-                            <th>YouTube</th>
-                            <th>Article</th>
-                            <th>Level</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+              <table class="subtopics-table">
+                  <thead>
+                    <tr>
+                      <th width="30%">Subtopic</th>
+                      <th>LeetCode</th>
+                      <th>YouTube</th>
+                      <th>Article</th>
+                      <th>Level</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <%= link_to "Add Sub topic", new_topic_sub_topic_path(topic.id) %>
 
-                        <% topic.sub_topics.each do |sub_topic| %>
-                        <%= link_to "Add Sub topic", new_topic_path %>
-
-                        <tr class="subtopic-row" id="subtopic-<%= sub_topic.id %>">
-                            <td>
-                            <%= check_box_tag "subtopic_#{sub_topic.id}", sub_topic.id, sub_topic.status,
-                                class: 'subtopic-checkbox',
-                                data: { 
-                                sub_topic_id: sub_topic.id,
-                                topic_id: topic.id,
-                                remote: true,
-                                url: update_status_topic_sub_topic_path(topic, sub_topic),
-                                method: :patch
-                                } %>
-                                <label for="subtopic_<%= sub_topic.id %>"><%= sub_topic.name %></label>
-                            </td>
-                            <td>
-                                <% if sub_topic.leetcode_link.present? %>
-                                <%= link_to 'Practice', sub_topic.leetcode_link, target: '_blank', class: 'resource-link' %>
-                                <% else %>
-                                -
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if sub_topic.youtube_link.present? %>
-                                <%= link_to 'Watch', sub_topic.youtube_link, target: '_blank', class: 'resource-link' %>
-                                <% else %>
-                                -
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if sub_topic.article_link.present? %>
-                                <%= link_to 'Read', sub_topic.article_link, target: '_blank', class: 'resource-link' %>
-                                <% else %>
-                                -
-                                <% end %>
-                            </td>
-                            <td>
-                                <span class="level-badge <%= sub_topic.level.downcase %>">
-                                    <%= sub_topic.level %>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="status-badge <%= sub_topic.status ? 'done' : 'pending' %>">
-                                    <%= sub_topic.status ? '✓ Done' : 'Pending' %>
-                                </span>
-                            </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
+                      <% topic.sub_topics.each do |sub_topic| %>
+                      <tr class="subtopic-row" id="subtopic-<%= sub_topic.id %>">
+                        <td>
+                        <%= check_box_tag "subtopic_#{sub_topic.id}", sub_topic.id, sub_topic.status,
+                            class: 'subtopic-checkbox',
+                            data: { 
+                            sub_topic_id: sub_topic.id,
+                            topic_id: topic.id,
+                            remote: true,
+                            url: update_status_topic_sub_topic_path(topic, sub_topic),
+                            method: :patch
+                            } %>
+                            <label for="subtopic_<%= sub_topic.id %>"><%= sub_topic.name %></label>
+                        </td>
+                        <td>
+                            <% if sub_topic.leetcode_link.present? %>
+                            <%= link_to 'Practice', sub_topic.leetcode_link, target: '_blank', class: 'resource-link' %>
+                            <% else %>
+                            -
+                            <% end %>
+                        </td>
+                        <td>
+                            <% if sub_topic.youtube_link.present? %>
+                            <%= link_to 'Watch', sub_topic.youtube_link, target: '_blank', class: 'resource-link' %>
+                            <% else %>
+                            -
+                            <% end %>
+                        </td>
+                        <td>
+                            <% if sub_topic.article_link.present? %>
+                            <%= link_to 'Read', sub_topic.article_link, target: '_blank', class: 'resource-link' %>
+                            <% else %>
+                            -
+                            <% end %>
+                        </td>
+                        <td>
+                            <span class="level-badge <%= sub_topic.level.downcase %>">
+                                <%= sub_topic.level %>
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status-badge <%= sub_topic.status ? 'done' : 'pending' %>">
+                                <%= sub_topic.status ? '✓ Done' : 'Pending' %>
+                            </span>
+                        </td>
+                      </tr>
+                      <% end %>
+                  </tbody>
+              </table>
             </div>
         </div>
-        <% end %>
+      <% end %>
     </div>
 </div>
 

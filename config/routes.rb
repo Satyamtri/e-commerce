@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
   resources :posts
   resources :topics do
-    resources :sub_topics, only: [] do
+    resources :sub_topics do
       member do
         patch :update_status
       end
