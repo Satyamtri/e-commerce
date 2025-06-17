@@ -16,9 +16,9 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
-      format.json { render json: @topic, success: :true, message: "Topic created successfully" }
+      redirect_to topics_path, notice: 'Topic created successfully'
     else
-      format.json { render json: @topic.errors, status: :unprocessable_entity }
+      render :new
     end
   end
 

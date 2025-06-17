@@ -1,6 +1,8 @@
 <div class="container">
     <h4 class="login text-info">Topics</h4>
     <p class="topic-subheading">Explore These Exciting Topics</p>
+    <div class="text-center pb-2"><%= link_to "Add Topic", new_topic_path, class: "btn btn-primary btn-add-topic" %>
+    </div>
     <div id="topics" class="topic-list">
         <% @topics.each do |topic| %>
         <div class="topic-item">
@@ -29,7 +31,10 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <% topic.sub_topics.each do |sub_topic| %>
+                        <%= link_to "Add Sub topic", new_topic_path %>
+
                         <tr class="subtopic-row" id="subtopic-<%= sub_topic.id %>">
                             <td>
                             <%= check_box_tag "subtopic_#{sub_topic.id}", sub_topic.id, sub_topic.status,

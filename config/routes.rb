@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :posts
-  resources :topics, only: [:index, :show] do
+  resources :topics do
     resources :sub_topics, only: [] do
       member do
         patch :update_status
